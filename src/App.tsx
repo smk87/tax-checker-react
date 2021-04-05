@@ -3,9 +3,10 @@ import React from 'react';
 
 // File imports
 import 'styles/index.scss';
+import { Router } from 'views/components';
 
 const App: React.FC = () => {
-	return <h1>Hello World</h1>;
+	return <Router />;
 };
 
 export default App;
