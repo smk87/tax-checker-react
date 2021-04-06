@@ -11,6 +11,7 @@ import { urls } from './urls';
  * ==========================================
  */
 const EnterUserInfo = lazy(() => import('views/pages').then(({ EnterUserInfo }) => ({ default: EnterUserInfo })));
+const EnterUserIncome = lazy(() => import('views/pages').then(({ EnterUserIncome }) => ({ default: EnterUserIncome })));
 
 /**
  * Routes
@@ -21,8 +22,12 @@ export const routes: Route = Object.freeze({
 	 * User routes
 	 * ==========================================
 	 */
-	VIEW_USER_INFO_PAGE: {
+	ENTER_INFO_PAGE: {
 		path: urls.ENTER_INFO(),
 		component: EnterUserInfo,
+	},
+	ENTER_INCOME: {
+		path: urls.ENTER_INCOME(),
+		component: EnterUserIncome,
 	},
 });

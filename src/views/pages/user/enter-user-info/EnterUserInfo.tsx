@@ -1,15 +1,16 @@
 // Library imports
 import { incomeTypes } from 'configs';
 import { useFormFields } from 'hooks';
-import React from 'react';
+import React, { FormEvent } from 'react';
 
 // File imports
 import { combineClasses } from 'utils';
 import { useStyles } from './EnterUserInfo.styles';
+import { InfoForm } from './EnterUserInfo.types';
 
 export const EnterUserInfo: React.FC = () => {
 	const { form, pageWrapper, submitButton } = useStyles();
-	const [fields, handleForm] = useFormFields({
+	const [fields, handleForm] = useFormFields<InfoForm>({
 		firstName: '',
 		lastName: '',
 		email: '',
@@ -18,12 +19,20 @@ export const EnterUserInfo: React.FC = () => {
 		incomeType: '',
 	});
 
+	const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+		event.preventDefault();
+
+		if (fields.incomeType !== 'unemployed') {
+			console.log('redirect');
+		}
+	};
+
 	return (
 		<div className={combineClasses('container', pageWrapper)}>
 			<div className='row'>
-				<h1 className='mb-4 text-primary'>Enter Your Basic Information</h1>
+				<h1 className='mb-4 text-primary font-weight-bold'>Enter Your Basic Information</h1>
 			</div>
-			<form className={combineClasses('row', form)}>
+			<form onSubmit={handleSubmit} className={combineClasses('row', form)}>
 				{/* First Name */}
 				<div className='col-12 mb-3 form-group'>
 					<label htmlFor='firstName' className='form-label'>

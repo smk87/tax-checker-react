@@ -3,6 +3,7 @@ import { Url } from './routes.types';
 // User related urls
 export const userUrls: Url = Object.freeze({
 	ENTER_INFO: () => '/',
+	ENTER_INCOME: () => '/enter-income',
 });
 
 // Admin related urls
