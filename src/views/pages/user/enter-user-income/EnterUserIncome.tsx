@@ -1,11 +1,12 @@
 // Library imports
-import { useFormFields } from 'hooks';
 import React, { FormEvent } from 'react';
 
 // File imports
-import { combineClasses } from 'utils';
+import { combineClasses, history } from 'utils';
 import { IncomeType } from '../enter-user-info/EnterUserInfo.types';
 import { useStyles } from './EnterUserIncome.styles';
+import { urls } from 'routes/urls';
+import { useFormFields } from 'hooks';
 
 export const EnterUserIncome: React.FC = () => {
 	const { form, pageWrapper, submitButton } = useStyles();
@@ -31,6 +32,8 @@ export const EnterUserIncome: React.FC = () => {
 
 	const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
 		event.preventDefault();
+
+		history.push(urls.SHOW_TAX());
 	};
 
 	return (

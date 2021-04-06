@@ -4,6 +4,7 @@ import { Url } from './routes.types';
 export const userUrls: Url = Object.freeze({
 	ENTER_INFO: () => '/',
 	ENTER_INCOME: () => '/enter-income',
+	SHOW_TAX: () => '/show-tax',
 });
 
 // Admin related urls

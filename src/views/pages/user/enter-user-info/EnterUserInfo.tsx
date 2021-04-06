@@ -1,12 +1,13 @@
 // Library imports
 import { incomeTypes } from 'configs';
-import { useFormFields } from 'hooks';
 import React, { FormEvent } from 'react';
 
 // File imports
-import { combineClasses } from 'utils';
+import { combineClasses, history } from 'utils';
 import { useStyles } from './EnterUserInfo.styles';
 import { InfoForm } from './EnterUserInfo.types';
+import { urls } from 'routes/urls';
+import { useFormFields } from 'hooks';
 
 export const EnterUserInfo: React.FC = () => {
 	const { form, pageWrapper, submitButton } = useStyles();
@@ -22,8 +23,8 @@ export const EnterUserInfo: React.FC = () => {
 	const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
 		event.preventDefault();
 
-		if (fields.incomeType !== 'unemployed') {
-			console.log('redirect');
+		if (fields.incomeType === 'unemployed') {
+			history.push(urls.ENTER_INCOME());
 		}
 	};
 

@@ -15,7 +15,8 @@ export const Router: React.FC = () => (
 		<Suspense fallback={''}>
 			<Switch>
 				{Object.keys(routes).map((key: string, index: number) => {
-					return <Route path={routes[key].path} exact component={routes[key].component} key={index} />;
+					console.log(routes[key]);
+					return <Route exact path={routes[key].path} component={routes[key].component} key={index} />;
 				})}
 			</Switch>
 		</Suspense>
