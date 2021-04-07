@@ -10,22 +10,36 @@ import { urls } from 'routes/urls';
 
 export const ShowTax: React.FC = () => {
 	const { messageWrapper, pageWrapper } = useStyles();
-	const { monthlyIncome } = useSelector((state: RootState) => state.user.infoState);
+	const userInfo = useSelector((state: RootState) => state.user.infoState);
 
-	const yearlyIncome = Number(monthlyIncome) * 12;
+	const yearlyIncome = Number(userInfo.monthlyIncome) * 12;
 
 	useEffect(() => {
-		if (!yearlyIncome) {
+		// Save to localStorage
+		const existingUsers = localStorage.getItem('users');
+
+		if (existingUsers && userInfo.incomeType) {
+			const updatedUsers = [...JSON.parse(existingUsers)];
+
+			updatedUsers.push(userInfo);
+			localStorage.setItem('users', JSON.stringify(updatedUsers));
+		} else if (userInfo.incomeType) {
+			localStorage.setItem('users', JSON.stringify([userInfo]));
+		}
+	}, []);
+
+	useEffect(() => {
+		if (!userInfo.incomeType) {
 			history.replace(urls.ENTER_INFO());
 		}
-	}, [monthlyIncome]);
+	}, [userInfo.incomeType]);
 
 	return (
 		<div className={combineClasses('container', pageWrapper)}>
 			<div className='row'></div>
 			<div className={combineClasses('row', messageWrapper)}>
 				{/* Monthly Income */}
-				<h1 className='mb-4  font-weight-bold'>Your Yearly Income is: {yearlyIncome}</h1>
+				<h1 className='mb-4  font-weight-bold'>Your Yearly Income is: ${yearlyIncome}</h1>
 				{yearlyIncome > 30000 ? (
 					<h3 className='text-align-center text-danger'>You are eligible for Tax.</h3>
 				) : (

@@ -14,7 +14,7 @@ import { registerUserIncomeInfo } from 'store/user';
 export const EnterUserIncome: React.FC = () => {
 	const { form, pageWrapper, submitButton } = useStyles();
 	const [fields, handleForm] = useFormFields({
-		monthlyIncome: NaN,
+		monthlyIncome: 0,
 	});
 	const { incomeType } = useSelector((state: RootState) => state.user.infoState);
 	const dispatch = useDispatch();
@@ -59,7 +59,7 @@ export const EnterUserIncome: React.FC = () => {
 				{/* Monthly Income */}
 				<div className='col-12 mb-3 form-group'>
 					<label htmlFor='monthlyIncome' className='form-label'>
-						{getLabel(incomeType as IncomeType)}
+						{getLabel(incomeType as IncomeType)} (USD)
 					</label>
 					<input
 						onChange={handleForm}
