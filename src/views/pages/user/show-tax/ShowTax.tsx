@@ -7,7 +7,7 @@ import { combineClasses, history } from 'utils';
 import { useStyles } from './ShowTax.styles';
 import { RootState } from 'store/store.types';
 import { urls } from 'routes/urls';
-import { localStorageKeys } from 'constant';
+import { localStorageKeys, taxThresholds } from 'constant';
 
 export const ShowTax: React.FC = () => {
 	const { messageWrapper, pageWrapper } = useStyles();
@@ -41,7 +41,7 @@ export const ShowTax: React.FC = () => {
 			<div className={combineClasses('row', messageWrapper)}>
 				{/* Monthly Income */}
 				<h1 className='mb-4  font-weight-bold'>Your Yearly Income is: ${yearlyIncome}</h1>
-				{yearlyIncome > 30000 ? (
+				{yearlyIncome > taxThresholds.MINIMUM_TAX_THRESHOLD ? (
 					<h3 className='text-align-center text-danger'>You are eligible for Tax.</h3>
 				) : (
 					<h3 className='text-align-center text-success'>You are not eligible for Tax.</h3>
