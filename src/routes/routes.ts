@@ -15,6 +15,13 @@ const EnterUserIncome = lazy(() => import('views/pages').then(({ EnterUserIncome
 const ShowTax = lazy(() => import('views/pages').then(({ ShowTax }) => ({ default: ShowTax })));
 
 /**
+ * ==========================================
+ * User components
+ * ==========================================
+ */
+const ShowUsers = lazy(() => import('views/pages').then(({ ShowUsers }) => ({ default: ShowUsers })));
+
+/**
  * Routes
  */
 export const routes: Route = Object.freeze({
@@ -34,5 +41,14 @@ export const routes: Route = Object.freeze({
 	SHOW_TAX_PAGE: {
 		path: urls.SHOW_TAX(),
 		component: ShowTax,
+	},
+	/**
+	 * ==========================================
+	 * Admin routes
+	 * ==========================================
+	 */
+	SHOW_USER_PAGE: {
+		path: urls.SHOW_USER(),
+		component: ShowUsers,
 	},
 });

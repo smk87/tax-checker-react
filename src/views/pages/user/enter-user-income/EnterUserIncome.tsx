@@ -27,13 +27,13 @@ export const EnterUserIncome: React.FC = () => {
 
 	const getLabel = (incomeType: IncomeType): string => {
 		switch (incomeType) {
-			case 'jobHolder':
+			case 'Job Holder':
 				return 'Monthly Basic Income';
 
-			case 'business':
+			case 'Business':
 				return 'Monthly Revenue';
 
-			case 'retired':
+			case 'Retired':
 				return 'Monthly Pension';
 
 			default:

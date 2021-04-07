@@ -29,7 +29,7 @@ export const EnterUserInfo: React.FC = () => {
 		// Dispatch action to register info
 		dispatch(registerUserInfo(fields));
 
-		if (fields.incomeType !== 'unemployed') {
+		if (fields.incomeType !== 'Unemployed') {
 			history.push(urls.ENTER_INCOME());
 		} else {
 			history.push(urls.SHOW_TAX());

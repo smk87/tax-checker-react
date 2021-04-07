@@ -11,7 +11,6 @@ import { DispatchType } from 'store/store.types';
 export const registerUserInfo = (payload: RegisterUserInfoPayload) => (
 	dispatch: Dispatch<DispatchType<RegisterUserInfoPayload>>
 ): void => {
-	console.log(payload);
 	dispatch({
 		type: USER_INFO.ADD,
 		payload,

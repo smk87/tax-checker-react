@@ -2,21 +2,21 @@ export const incomeTypes = [
 	{
 		id: 1,
 		label: 'Job Holder',
-		value: 'jobHolder',
+		value: 'Job Holder',
 	},
 	{
 		id: 2,
 		label: 'Business',
-		value: 'business',
+		value: 'Business',
 	},
 	{
 		id: 3,
 		label: 'Retired',
-		value: 'retired',
+		value: 'Retired',
 	},
 	{
 		id: 4,
 		label: 'Unemployed',
-		value: 'unemployed',
+		value: 'Unemployed',
 	},
 ];

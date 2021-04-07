@@ -7,4 +7,4 @@ export type InfoForm = {
 	incomeType: IncomeType;
 };
 
-export type IncomeType = 'jobHolder' | 'business' | 'retired' | 'unemployed' | '';
+export type IncomeType = 'Job Holder' | 'Business' | 'Retired' | 'Unemployed' | '';

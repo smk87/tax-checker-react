@@ -9,7 +9,7 @@ export const userUrls: Url = Object.freeze({
 
 // Admin related urls
 export const adminUrls: Url = Object.freeze({
-	VIEW_USER_INFO: () => '/admin/view-user-info',
+	SHOW_USER: () => '/admin/view-user-info',
 });
 
 // Merge all URLS

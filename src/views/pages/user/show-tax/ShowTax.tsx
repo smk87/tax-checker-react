@@ -7,6 +7,7 @@ import { combineClasses, history } from 'utils';
 import { useStyles } from './ShowTax.styles';
 import { RootState } from 'store/store.types';
 import { urls } from 'routes/urls';
+import { localStorageKeys } from 'constant';
 
 export const ShowTax: React.FC = () => {
 	const { messageWrapper, pageWrapper } = useStyles();
@@ -16,15 +17,15 @@ export const ShowTax: React.FC = () => {
 
 	useEffect(() => {
 		// Save to localStorage
-		const existingUsers = localStorage.getItem('users');
+		const existingUsers = localStorage.getItem(localStorageKeys.USER_STORE_KEY);
 
 		if (existingUsers && userInfo.incomeType) {
 			const updatedUsers = [...JSON.parse(existingUsers)];
 
 			updatedUsers.push(userInfo);
-			localStorage.setItem('users', JSON.stringify(updatedUsers));
+			localStorage.setItem(localStorageKeys.USER_STORE_KEY, JSON.stringify(updatedUsers));
 		} else if (userInfo.incomeType) {
-			localStorage.setItem('users', JSON.stringify([userInfo]));
+			localStorage.setItem(localStorageKeys.USER_STORE_KEY, JSON.stringify([userInfo]));
 		}
 	}, []);
 
