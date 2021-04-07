@@ -8,6 +8,8 @@ import { useStyles } from './EnterUserInfo.styles';
 import { InfoForm } from './EnterUserInfo.types';
 import { urls } from 'routes/urls';
 import { useFormFields } from 'hooks';
+import { registerUserInfo } from 'store/user';
+import { useDispatch } from 'react-redux';
 
 export const EnterUserInfo: React.FC = () => {
 	const { form, pageWrapper, submitButton } = useStyles();
@@ -19,12 +21,18 @@ export const EnterUserInfo: React.FC = () => {
 		address: '',
 		incomeType: '',
 	});
+	const dispatch = useDispatch();
 
 	const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
 		event.preventDefault();
 
-		if (fields.incomeType === 'unemployed') {
+		// Dispatch action to register info
+		dispatch(registerUserInfo(fields));
+
+		if (fields.incomeType !== 'unemployed') {
 			history.push(urls.ENTER_INCOME());
+		} else {
+			history.push(urls.SHOW_TAX());
 		}
 	};
 
@@ -114,6 +122,7 @@ export const EnterUserInfo: React.FC = () => {
 						name='incomeType'
 						id='incomeType'
 					>
+						<option value=''>Select</option>
 						{incomeTypes.map((type) => (
 							<option key={type.id} value={type.value}>
 								{type.label}

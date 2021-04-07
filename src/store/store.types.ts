@@ -1,9 +1,9 @@
 import { rootReducer } from './rootReducer';
 
-export type DispatchType = {
+export type DispatchType<T = any> = {
 	type: string;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	payload?: any;
+	payload?: T;
 };
 
 export type RootState = ReturnType<typeof rootReducer>;

@@ -1,5 +1,5 @@
 // Library imports
-import React, { FormEvent } from 'react';
+import React, { FormEvent, useEffect } from 'react';
 
 // File imports
 import { combineClasses, history } from 'utils';
@@ -7,12 +7,23 @@ import { IncomeType } from '../enter-user-info/EnterUserInfo.types';
 import { useStyles } from './EnterUserIncome.styles';
 import { urls } from 'routes/urls';
 import { useFormFields } from 'hooks';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store/store.types';
+import { registerUserIncomeInfo } from 'store/user';
 
 export const EnterUserIncome: React.FC = () => {
 	const { form, pageWrapper, submitButton } = useStyles();
 	const [fields, handleForm] = useFormFields({
-		monthlyIncome: '',
+		monthlyIncome: NaN,
 	});
+	const { incomeType } = useSelector((state: RootState) => state.user.infoState);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		if (!incomeType) {
+			history.replace(urls.ENTER_INFO());
+		}
+	}, [incomeType]);
 
 	const getLabel = (incomeType: IncomeType): string => {
 		switch (incomeType) {
@@ -26,12 +37,15 @@ export const EnterUserIncome: React.FC = () => {
 				return 'Monthly Pension';
 
 			default:
-				return '';
+				return 'Monthly Income';
 		}
 	};
 
 	const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
 		event.preventDefault();
+
+		// Dispatch register Income Info Action
+		dispatch(registerUserIncomeInfo(fields));
 
 		history.push(urls.SHOW_TAX());
 	};
@@ -45,7 +59,7 @@ export const EnterUserIncome: React.FC = () => {
 				{/* Monthly Income */}
 				<div className='col-12 mb-3 form-group'>
 					<label htmlFor='monthlyIncome' className='form-label'>
-						{getLabel('jobHolder')}
+						{getLabel(incomeType as IncomeType)}
 					</label>
 					<input
 						onChange={handleForm}

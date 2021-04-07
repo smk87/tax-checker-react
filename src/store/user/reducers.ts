@@ -1,5 +1,5 @@
 import { ActionReturnType } from 'store/store.types';
-import { USER_INFO } from './actionTypes';
+import { USER_INCOME_INFO, USER_INFO } from './actionTypes';
 
 const initialState = () => ({
 	infoState: {
@@ -14,11 +14,14 @@ const initialState = () => ({
 });
 
 export const userReducer = (state = initialState(), action: ActionReturnType): ReturnType<typeof initialState> => {
+	const payload = action.payload;
+
 	switch (action.type) {
 		case USER_INFO.ADD:
+		case USER_INCOME_INFO.ADD:
 			return {
 				...state,
-				infoState: action.payload,
+				infoState: { ...state.infoState, ...payload },
 			};
 
 		default:

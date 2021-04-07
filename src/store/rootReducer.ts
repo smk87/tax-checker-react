@@ -1,11 +1,10 @@
 // Library imports
-import { CombinedState, combineReducers, Reducer } from 'redux';
+import { combineReducers } from 'redux';
 
 // File imports
 import { userReducer } from './user';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const rootReducer: Reducer<CombinedState<any>> = combineReducers({
+export const rootReducer = combineReducers({
 	/**
 	 * Reducers here
 	 */
